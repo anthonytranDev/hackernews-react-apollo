@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import React, { useState } from "react";
+import { gql, useMutation } from "@apollo/client";
 
 import { AUTH_TOKEN } from "../constants";
 
@@ -20,73 +19,71 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-class Login extends Component {
-  state = {
-    login: true,
-    email: "",
-    password: "",
-    name: "",
-  };
+const Login = (props) => {
+  const [authorised, setAuthorised] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  render() {
-    const { login, email, password, name } = this.state;
-    return (
-      <div>
-        <h4 className="mv3">{login ? "Login" : "Sign Up"}</h4>
-        <div className="flex flex-column">
-          {!login && (
-            <input
-              value={name}
-              onChange={(e) => this.setState({ name: e.target.value })}
-              type="text"
-              placeholder="Your name"
-            />
-          )}
-          <input
-            value={email}
-            onChange={(e) => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Your email address"
-          />
-          <input
-            value={password}
-            onChange={(e) => this.setState({ password: e.target.value })}
-            type="password"
-            placeholder="Choose a safe password"
-          />
-        </div>
-        <div className="flex mt3">
-          <Mutation
-            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-            variables={{ email, password, name }}
-            onCompleted={(data) => this._confirm(data)}
-          >
-            {(mutation) => (
-              <div className="pointer mr2 button" onClick={mutation}>
-                {login ? "login" : "create account"}
-              </div>
-            )}
-          </Mutation>
-          <div
-            className="pointer button"
-            onClick={() => this.setState({ login: !login })}
-          >
-            {login ? "need to create an account?" : "already have an account?"}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  _confirm = async (data) => {
-    const { token } = this.state.login ? data.login : data.signup;
-    this._saveUserData(token);
-    this.props.history.push(`/`);
-  };
-
-  _saveUserData = (token) => {
+  const _saveUserData = (token) => {
     localStorage.setItem(AUTH_TOKEN, token);
   };
-}
+
+  const _confirm = async (data) => {
+    const { token } = authorised ? data.login : data.signup;
+    _saveUserData(token);
+    props.history.push(`/`);
+  };
+
+  const [handleAccess] = useMutation(
+    authorised ? LOGIN_MUTATION : SIGNUP_MUTATION,
+    {
+      variables: { email, password, name },
+      onCompleted: (data) => _confirm(data),
+      onError: (error) => console.error(error),
+    }
+  );
+
+  return (
+    <div>
+      <h4 className="mv3">{authorised ? "Login" : "Sign Up"}</h4>
+      <div className="flex flex-column">
+        {!authorised && (
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Your name"
+          />
+        )}
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Your email address"
+        />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Choose a safe password"
+        />
+      </div>
+      <div className="flex mt3">
+        <div className="pointer mr2 button" onClick={handleAccess}>
+          {authorised ? "login" : "create account"}
+        </div>
+        <div
+          className="pointer button"
+          onClick={() => setAuthorised(!authorised)}
+        >
+          {authorised
+            ? "need to create an account?"
+            : "already have an account?"}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Login;

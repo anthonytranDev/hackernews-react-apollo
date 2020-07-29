@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withApollo } from "react-apollo";
+import { withApollo } from "@apollo/react-hoc";
 import gql from "graphql-tag";
 import Link from "./Link";
 

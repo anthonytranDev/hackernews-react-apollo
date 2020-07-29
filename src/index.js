@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ApolloProvider } from "react-apollo";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
-import { split } from "apollo-link";
-import { setContext } from "apollo-link-context";
-import { createHttpLink } from "apollo-link-http";
-import { WebSocketLink } from "apollo-link-ws";
-import { getMainDefinition } from "apollo-utilities";
+
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  split,
+  InMemoryCache,
+} from "@apollo/client";
+
+import { getMainDefinition } from "@apollo/client/utilities";
+
+import { setContext } from "@apollo/link-context";
+import { WebSocketLink } from "@apollo/link-ws";
 
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
