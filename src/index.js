@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-
 import {
   ApolloClient,
   ApolloProvider,
@@ -9,16 +8,13 @@ import {
   split,
   InMemoryCache,
 } from "@apollo/client";
-
 import { getMainDefinition } from "@apollo/client/utilities";
-
 import { setContext } from "@apollo/link-context";
 import { WebSocketLink } from "@apollo/link-ws";
 
 import App from "./components/App";
-import * as serviceWorker from "./serviceWorker";
-
 import { AUTH_TOKEN } from "./constants";
+import * as serviceWorker from "./serviceWorker";
 
 import "tachyons/css/tachyons.min.css";
 import "./styles/index.css";

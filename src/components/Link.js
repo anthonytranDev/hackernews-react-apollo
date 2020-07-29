@@ -1,28 +1,9 @@
-import React, { Component } from "react";
-import { gql, useMutation } from "@apollo/client";
+import React from "react";
+import { useMutation } from "@apollo/client";
 
+import { VOTE_MUTATION } from "../apollo/mutation";
 import { AUTH_TOKEN } from "../constants";
 import { timeDifferenceForDate } from "../utils";
-
-const VOTE_MUTATION = gql`
-  mutation VoteMutation($linkId: ID!) {
-    vote(linkId: $linkId) {
-      id
-      link {
-        id
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-      user {
-        id
-      }
-    }
-  }
-`;
 
 const Link = (props) => {
   const authToken = localStorage.getItem(AUTH_TOKEN);

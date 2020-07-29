@@ -1,18 +1,7 @@
-import React, { Component, useState } from "react";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 
-import { LINKS_PER_PAGE } from "../constants";
-
-const POST_MUTATION = gql`
-  mutation PostMutation($description: String!, $url: String!) {
-    post(description: $description, url: $url) {
-      id
-      createdAt
-      url
-      description
-    }
-  }
-`;
+import { POST_MUTATION } from "../apollo/mutation";
 
 const CreateLink = (props) => {
   const [description, setDescription] = useState("");
