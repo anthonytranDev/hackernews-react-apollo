@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const FEED_QUERY = gql`
   query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
@@ -22,7 +22,7 @@ const FEED_QUERY = gql`
       count
     }
   }
-`;
+`
 
 const FEED_SEARCH_QUERY = gql`
   query FeedSearchQuery($filter: String!) {
@@ -45,6 +45,6 @@ const FEED_SEARCH_QUERY = gql`
       }
     }
   }
-`;
+`
 
-export { FEED_QUERY, FEED_SEARCH_QUERY };
+export { FEED_QUERY, FEED_SEARCH_QUERY }

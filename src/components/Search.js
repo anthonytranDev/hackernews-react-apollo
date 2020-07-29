@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { withApollo } from "@apollo/react-hoc";
+import React, { useState } from 'react'
+import { withApollo } from '@apollo/react-hoc'
 
-import Link from "./Link";
+import Link from './Link'
 
-import { FEED_SEARCH_QUERY } from "../apollo/query";
+import { FEED_SEARCH_QUERY } from '../apollo/query'
 
 const Search = ({ client }) => {
-  const [links, setLinks] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [links, setLinks] = useState([])
+  const [filter, setFilter] = useState('')
 
   const _executeSearch = async () => {
     const result = await client.query({
       query: FEED_SEARCH_QUERY,
       variables: { filter },
-    });
-    setLinks(result.data.feed.links);
-  };
+    })
+    setLinks(result.data.feed.links)
+  }
 
   return (
     <div>
@@ -32,7 +32,7 @@ const Search = ({ client }) => {
         <Link key={link.id} link={link} index={index} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default withApollo(Search);
+export default withApollo(Search)

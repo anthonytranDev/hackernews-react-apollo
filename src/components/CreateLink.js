@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
 
-import { POST_MUTATION } from "../apollo/mutation";
+import { POST_MUTATION } from '../apollo/mutation'
 
 const CreateLink = (props) => {
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState('')
+  const [url, setUrl] = useState('')
 
-  const [createPost] = useMutation(POST_MUTATION);
+  const [createPost] = useMutation(POST_MUTATION)
 
   return (
     <div>
@@ -31,23 +31,23 @@ const CreateLink = (props) => {
         onClick={() => {
           return createPost({
             variables: { description, url },
-            onCompleted: () => props.history.push("/new/1"),
+            onCompleted: () => props.history.push('/new/1'),
             onError: (error) => console.error(error),
             optimisticResponse: {
-              __typename: "Mutation",
+              __typename: 'Mutation',
               post: {
-                __typename: "Link",
+                __typename: 'Link',
                 description,
                 url,
               },
             },
-          });
+          })
         }}
       >
         Submit
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CreateLink;
+export default CreateLink

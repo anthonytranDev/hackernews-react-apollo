@@ -4,7 +4,7 @@ function newLinkSubscribe(parent, args, context, info) {
 
 const newLink = {
   subscribe: newLinkSubscribe,
-  resolve: payload => {
+  resolve: (payload) => {
     return payload
   },
 }
@@ -15,7 +15,7 @@ function newVoteSubscribe(parent, args, context, info) {
 
 const newVote = {
   subscribe: newVoteSubscribe,
-  resolve: payload => {
+  resolve: (payload) => {
     return payload
   },
 }

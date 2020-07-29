@@ -1,11 +1,11 @@
-import React from "react";
-import Header from "./Header";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React from 'react'
+import Header from './Header'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-import CreateLink from "./CreateLink";
-import LinkList from "./LinkList";
-import Login from "./Login";
-import Search from "./Search";
+import CreateLink from './CreateLink'
+import LinkList from './LinkList'
+import Login from './Login'
+import Search from './Search'
 
 const App = () => (
   <div className="center w85">
@@ -29,6 +29,6 @@ const App = () => (
       </Switch>
     </div>
   </div>
-);
+)
 
-export default App;
+export default App

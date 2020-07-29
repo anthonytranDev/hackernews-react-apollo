@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const NEW_LINKS_SUBSCRIPTION = gql`
   subscription {
@@ -19,7 +19,7 @@ const NEW_LINKS_SUBSCRIPTION = gql`
       }
     }
   }
-`;
+`
 
 const NEW_VOTES_SUBSCRIPTION = gql`
   subscription {
@@ -46,6 +46,6 @@ const NEW_VOTES_SUBSCRIPTION = gql`
       }
     }
   }
-`;
+`
 
-export { NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION };
+export { NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION }

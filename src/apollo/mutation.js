@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const LOGIN_MUTATION = gql`
   mutation LoginMutation($email: String!, $password: String!) {
@@ -6,7 +6,7 @@ const LOGIN_MUTATION = gql`
       token
     }
   }
-`;
+`
 
 const POST_MUTATION = gql`
   mutation PostMutation($description: String!, $url: String!) {
@@ -17,7 +17,7 @@ const POST_MUTATION = gql`
       description
     }
   }
-`;
+`
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {
@@ -25,7 +25,7 @@ const SIGNUP_MUTATION = gql`
       token
     }
   }
-`;
+`
 
 const VOTE_MUTATION = gql`
   mutation VoteMutation($linkId: ID!) {
@@ -45,6 +45,6 @@ const VOTE_MUTATION = gql`
       }
     }
   }
-`;
+`
 
-export { LOGIN_MUTATION, POST_MUTATION, SIGNUP_MUTATION, VOTE_MUTATION };
+export { LOGIN_MUTATION, POST_MUTATION, SIGNUP_MUTATION, VOTE_MUTATION }
